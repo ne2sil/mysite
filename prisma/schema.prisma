@@ -1,0 +1,27 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model EventPage {
+  id         String   @id @default(cuid())
+  title      String
+  date       String
+  time       String
+  place      String
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime
+}
+
+model PaymentSettings {
+  id         Int      @id @default(autoincrement())
+  cardNumber String
+  bank       String
+  recipient  String
+  isActive   Boolean  @default(true)
+  updatedAt  DateTime @default(now())
+}
